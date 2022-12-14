@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversing</title>
+
+    <style>
+      body {
+        margin: 1em;
+      }
+      section {
+        padding: 3rem 2rem;
+      }
+      .colorBlack {
+        background-color: black;
+        color: white;
+      }
+
+      .list_items {
+        background-color: aqua;
+      }
+
+      .text-color-red {
+        color: red;
+      }
+      /* document.querySelector("section:first-of-type")//prende la prima section
+        document.querySelector("section:first-of-type li")//prende il primo li */
+    </style>
+  </head>
+  <body>
+    <h1>Title</h1>
+    <h2>Second title</h2>
+    <h3>list items</h3>
+    <section>
+      <h2>sezione 1</h2>
+
+      <ul>
+        <li>elemento1</li>
+        <li>elemento2</li>
+        <li>elemento3</li>
+        <li>elemento4</li>
+        <li>elemento5</li>
+      </ul>
+    </section>
+    <section>
+      <h2>sezione 2</h2>
+      <ul>
+        <li class="list_items">elemento1</li>
+        <li class="list_items">elemento2</li>
+        <li class="list_items">elemento3</li>
+        <li class="list_items">elemento4</li>
+        <li class="list_items">elemento5</li>
+      </ul>
+    </section>
+    <section>
+      <h2>sezione 3</h2>
+
+      <ul>
+        <li>elemento1</li>
+        <li>elemento2</li>
+        <li>elemento3</li>
+        <li>elemento4</li>
+        <li>elemento5</li>
+      </ul>
+    </section>
+    <section>
+      <h2>sezione 4</h2>
+
+      <ul>
+        <li>elemento1</li>
+        <li>elemento2</li>
+        <li>elemento3</li>
+        <li>elemento4</li>
+        <li>elemento5</li>
+      </ul>
+    </section>
+
+    <div id="container"></div>
+
+    <footer>Epicode copyright</footer>
+
+    <script>
+      //   console.log(document.getElementsByClassName("list_items"));
+      //   document.querySelectorAll(".list_items"); //utilizo il punto come css
+
+      //   const nodeList = document.querySelectorAll(".list_items")
+      //   nodeList.forEach(el => console.log(el))
+
+      const changeTitle = () => {
+        const h1 = document.querySelector("h1");
+        h1.style.fontSize = "100px"; //quello che si farebbe su css
+        h1.style.color = "red";
+        h1.innerText = "Nuovo titolo!"; //cambia il contenuto in h1
+      };
+
+      //   const h1 = document.querySelector("h1");
+      //     h1.style.fontSize = "100px"; //quello che si farebbe su css
+      //     h1.style.color = "red";
+      //     h1.innerText = "Nuovo titolo!"; //cambia il contenuto in h1
+      //se uso una funzione la devo richiamare, mentre  cosi cambia tutto all'istante
+
+      const removeClassFromSecondLis = () => {
+        const secondLis = document.querySelectorAll("#secondSection li");
+        secondLis.forEach((li) => (li.className = ""));
+        for (let i = 0; i < secondLis.length; i++) {
+          const li = secondLis[i];
+          li.className = "";
+        }
+      };
+
+      const addColorToFirstLis = () => {
+        const firstLis = document.querySelectorAll(
+          "section:first-of-type > ul > li"
+        );
+
+        firstLis.forEach((li) => (li.className = "text-color.red"));
+      };
+
+      const addNewLi = () => {
+        const list = document.querySelector("section:nth-of-type(3) ul");
+        const newLi = document.createElement("li");
+        newLi.innerText = "elemento5NEW";
+        newLi.style.color = "red";
+
+        list.appendChild(newLi);
+      };
+      const content = "Elemento di Prova";
+
+      const createNewSection = () => {
+        //crea una nuova section e gli assegna content
+        const section = document.getElementById("container");
+        section.innerHTML += "<ul> <li>" + content + "</li></ul>";
+      };
+    </script>
+  </body>
+</html>
